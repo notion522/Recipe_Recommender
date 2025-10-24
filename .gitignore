@@ -4,3 +4,4 @@ __pycache__/
 .DS_Store
 data/*.zip   # optional if you don't want to commit raw dataset zipmodels/*.pkl
 models/*.pkl
+models/*.pkl
