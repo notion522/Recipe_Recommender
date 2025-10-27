@@ -9,10 +9,10 @@ def load_models():
 
     repo_id = "hegdeKhyati/recipe-recommender-models"
 
-    vectorizer_path = hf_hub_download(repo_id=repo_id, filename="tfidf_vectorizer.pkl")
-    svd_path = hf_hub_download(repo_id=repo_id, filename="svd_model.pkl")
-    faiss_path = hf_hub_download(repo_id=repo_id, filename="faiss_index.bin")
-    df_path = hf_hub_download(repo_id=repo_id, filename="recipes_df.pkl")
+    vectorizer_path = hf_hub_download(repo_id=repo_id, filename="hybrid_vectorizer.pkl")
+    svd_path = hf_hub_download(repo_id=repo_id, filename="hybrid_svd.pkl")
+    faiss_path = hf_hub_download(repo_id=repo_id, filename="hybrid_faiss_index.faiss")
+    df_path = hf_hub_download(repo_id=repo_id, filename="recipes_meta.pkl")
 
     vectorizer = joblib.load(vectorizer_path)
     svd = joblib.load(svd_path)
