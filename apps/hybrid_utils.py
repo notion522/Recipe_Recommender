@@ -3,12 +3,25 @@ import faiss
 import pandas as pd
 import numpy as np
 import re
+from huggingface_hub import hf_hub_download
 
 def load_models():
-    vectorizer = joblib.load("../models/hybrid_vectorizer.pkl")
-    svd = joblib.load("../models/hybrid_svd.pkl")
-    index = faiss.read_index("../models/hybrid_faiss_index.faiss")
-    df = pd.read_csv("../models/recipes_meta.csv")
+
+    repo_id = "hegdeKhyati/recipe-recommender-models"
+
+    vectorizer_path = hf_hub_download(repo_id=repo_id, filename="tfidf_vectorizer.pkl")
+    svd_path = hf_hub_download(repo_id=repo_id, filename="svd_model.pkl")
+    faiss_path = hf_hub_download(repo_id=repo_id, filename="faiss_index.bin")
+    df_path = hf_hub_download(repo_id=repo_id, filename="recipes_df.pkl")
+
+    vectorizer = joblib.load(vectorizer_path)
+    svd = joblib.load(svd_path)
+    index = faiss.read_index(faiss_path)
+    df = joblib.load(df_path)
+    # vectorizer = joblib.load("../models/hybrid_vectorizer.pkl")
+    # svd = joblib.load("../models/hybrid_svd.pkl")
+    # index = faiss.read_index("../models/hybrid_faiss_index.faiss")
+    # df = pd.read_csv("../models/recipes_meta.csv")
     return vectorizer, svd, index, df
 
 units = ['cup', 'cups', 'pound', 'pounds', 'tablespoon', 'tablespoons',

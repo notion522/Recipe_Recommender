@@ -6,3 +6,4 @@ joblib
 faiss-cpu
 matplotlib
 scipy
+huggingface_hub
